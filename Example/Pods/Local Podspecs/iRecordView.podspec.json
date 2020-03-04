@@ -1,8 +1,8 @@
 {
   "name": "iRecordView",
-  "version": "0.1.0",
-  "summary": "A short description of iRecordView.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.1.1",
+  "summary": "A Simple Audio Recorder View with hold to Record Button and Swipe to Cancel.",
+  "description": "A Simple Audio Recorder View with \"hold to Record Button\" and \"Swipe to Cancel \" Like WhatsApp",
   "homepage": "https://github.com/3llomi/iRecordView",
   "license": {
     "type": "MIT",
@@ -13,10 +13,18 @@
   },
   "source": {
     "git": "https://github.com/3llomi/iRecordView.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
+  "social_media_url": "https://twitter.com/3llomi",
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "iRecordView/Classes/**/*"
+  "source_files": "Source/**/*",
+  "resource_bundles": {
+    "iRecordView": [
+      "Res/**/*"
+    ]
+  },
+  "swift_versions": "5.0",
+  "swift_version": "5.0"
 }
