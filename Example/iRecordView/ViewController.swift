@@ -45,6 +45,7 @@ class ViewController: UIViewController,RecordViewDelegate {
         recordButton.translatesAutoresizingMaskIntoConstraints = false
         
         let recordView = RecordView()
+        recordView.isSoundEnabled = false
         recordView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(recordButton)

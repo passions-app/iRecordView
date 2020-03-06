@@ -112,10 +112,12 @@ public class RecordView: UIView, CAAnimationDelegate {
 
         slideToCancelStackVIew.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         slideToCancelStackVIew.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        slideToCancelStackVIew.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 
 
         timerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         timerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        timerStackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 
 
         mTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)
