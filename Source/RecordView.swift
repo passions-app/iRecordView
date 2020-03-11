@@ -18,7 +18,7 @@ public class RecordView: UIView, CAAnimationDelegate {
     private var mTransform: CGAffineTransform!
     private var audioPlayer: AudioPlayer!
     
-    private var timerStackView: UIStackView!
+    private(set) public var timerStackView: UIStackView!
     private var slideToCancelStackVIew: UIStackView!
 
     public var delegate: RecordViewDelegate?
@@ -56,7 +56,7 @@ public class RecordView: UIView, CAAnimationDelegate {
     }
 
 
-    private let arrow: UIImageView = {
+    public let arrow: UIImageView = {
         let arrowView = UIImageView()
         arrowView.image = UIImage.fromPod("arrow")
         arrowView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ public class RecordView: UIView, CAAnimationDelegate {
         return arrowView
     }()
 
-    private let slideLabel: UILabel = {
+    public let slideLabel: UILabel = {
         let slide = UILabel()
         slide.text = "Slide To Cancel"
         slide.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ public class RecordView: UIView, CAAnimationDelegate {
         return slide
     }()
 
-    private var timerLabel: UILabel = {
+    public var timerLabel: UILabel = {
         let label = UILabel()
         label.text = "00:00"
         label.font = label.font.withSize(12)
@@ -88,36 +88,38 @@ public class RecordView: UIView, CAAnimationDelegate {
         bucketImageView = BucketImageView(frame: frame)
         bucketImageView.animationDelegate = self
         bucketImageView.translatesAutoresizingMaskIntoConstraints = false
-        bucketImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        bucketImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
 
         timerStackView = UIStackView(arrangedSubviews: [bucketImageView, timerLabel])
         timerStackView.translatesAutoresizingMaskIntoConstraints = false
         timerStackView.isHidden = true
         timerStackView.spacing = 5
+        timerLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        bucketImageView.setContentCompressionResistancePriority(.required, for: .vertical)
+        bucketImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        bucketImageView.setContentHuggingPriority(.required, for: .horizontal)
 
-
-        slideToCancelStackVIew = UIStackView(arrangedSubviews: [arrow, slideLabel])
+        slideToCancelStackVIew = UIStackView(arrangedSubviews: [slideLabel, arrow])
         slideToCancelStackVIew.translatesAutoresizingMaskIntoConstraints = false
         slideToCancelStackVIew.isHidden = true
+        slideToCancelStackVIew.spacing = 5
 
 
-        addSubview(timerStackView)
         addSubview(slideToCancelStackVIew)
+        addSubview(timerStackView)
 
 
-        arrow.widthAnchor.constraint(equalToConstant: 15).isActive = true
-        arrow.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        arrow.contentMode = .scaleAspectFit
 
         slideToCancelStackVIew.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        slideToCancelStackVIew.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        slideToCancelStackVIew.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        slideToCancelStackVIew.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
+        slideToCancelStackVIew.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor).isActive = true
+        slideToCancelStackVIew.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 
 
         timerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        timerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        timerStackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        timerStackView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
+        timerStackView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor).isActive = true
+        timerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 
 
         mTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)

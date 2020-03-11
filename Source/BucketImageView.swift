@@ -104,6 +104,10 @@ class BucketImageView: UIImageView, CAAnimationDelegate {
 
     }
 
+    override var intrinsicContentSize: CGSize {
+        return smallMicImage.size
+    }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -170,7 +174,8 @@ class BucketImageView: UIImageView, CAAnimationDelegate {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        micLayer.position = center
+        micLayer.frame.size = smallMicImage.size
         if micMidY == nil {
             micMidY = micLayer.frame.midY
         }
