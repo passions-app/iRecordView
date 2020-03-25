@@ -104,8 +104,8 @@ public class RecordView: UIView, CAAnimationDelegate {
         slideToCancelStackVIew.spacing = 5
 
 
-        addSubview(slideToCancelStackVIew)
         addSubview(timerStackView)
+        addSubview(slideToCancelStackVIew)
 
 
         arrow.contentMode = .scaleAspectFit

@@ -67,7 +67,11 @@ open class RecordButton: UIButton, UIGestureRecognizerDelegate {
 
     }
 
-    override init(frame: CGRect) {
+    public convenience init() {
+        self.init(frame: .zero)
+    }
+
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
